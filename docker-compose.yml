@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  marqo:
+    image: marqoai/marqo:1.5.1
+    container_name: marqoDB
+    privileged: true
+    ports:
+      - "8883:8882"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      MARQO_MAX_INDEX_FIELDS: 400
+      MARQO_MAX_DOC_BYTES: 200000
+      MARQO_MAX_RETRIEVABLE_DOCS: 600
+      MARQO_MAX_NUMBER_OF_REPLICAS: 2
+      MARQO_MODELS_TO_PRELOAD: '["flax-sentence-embeddings/all_datasets_v4_mpnet-base"]'
